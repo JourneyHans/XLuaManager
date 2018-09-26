@@ -6,18 +6,26 @@ using UnityEngine.UI;
 public class TargetScript : MonoBehaviour
 {
     public Text title;
+
     private int tick = 0;
+    private string key;
 
 	void Start ()
 	{
-	    Debug.Log(">>>>>>>>>> Start in C#, tick = " + tick);
+	    key = EncryptKey.desKey;
+	    Show();
 	}
 
-    void Update()
+    void Show()
     {
-        if (++tick % 50 == 0)
-        {
-            title.text = "Update in C#, tick = " + tick;
-        }
+        title.text = key;
     }
+}
+
+/// <summary>
+/// 临时的key
+/// </summary>
+public struct EncryptKey
+{
+    public static string desKey = "1111111";   // 64位
 }

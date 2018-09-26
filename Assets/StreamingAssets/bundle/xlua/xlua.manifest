@@ -1,0 +1,10 @@
+ManifestFileVersion: 0
+CRC: 4191742991
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: out/main.lua.bytes
+      Dependencies: {}
+    Info_1:
+      Name: out/patch1.lua.bytes
+      Dependencies: {}
