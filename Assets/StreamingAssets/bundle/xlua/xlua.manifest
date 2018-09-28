@@ -1,10 +1,16 @@
 ManifestFileVersion: 0
-CRC: 4191742991
+CRC: 23986207
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: out/main.lua.bytes
+      Name: out/hotfix_ex.lua.bytes
       Dependencies: {}
     Info_1:
-      Name: out/patch1.lua.bytes
+      Name: out/main.lua.bytes
+      Dependencies: {}
+    Info_2:
+      Name: out/target.lua.bytes
+      Dependencies: {}
+    Info_3:
+      Name: out/util.lua.bytes
       Dependencies: {}

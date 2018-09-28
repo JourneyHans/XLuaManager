@@ -2,4 +2,5 @@
 print("main.lua--------------> xLua Start")
 
 -- 打补丁
-require("patch1")
+require("target")
+require("hotfix_ex")

@@ -10,10 +10,25 @@ namespace XLua
 {
     public static class BuildLuaToAssetBundle
     {
-        private static string bytesPath = "Assets/XLua/Out";            // 输出的 *.bytes文件所在目录
+        private static string bytesPath = "Assets/MyTest/Out";            // 输出的 *.bytes文件所在目录
         private static string luaPath = "Assets/MyTest/XLua/Logic";     // lua源文件
 
-        [MenuItem("XLua/Build To AssetBundle", false, 20)]
+        [MenuItem("XLua/Clean Lua AssetBundle", false, 20)]
+        public static void CleanAssetBundle()
+        {
+            string bundleOutPath = Path.Combine(Application.streamingAssetsPath, "bundle");
+            if (!Directory.Exists(bundleOutPath))
+            {
+                Directory.CreateDirectory(bundleOutPath);
+            }
+            else
+            {
+                Directory.Delete(bundleOutPath, true);
+            }
+            AssetDatabase.Refresh();
+        }
+
+        [MenuItem("XLua/Build To AssetBundle", false, 21)]
         public static void BuildToAssetBundle()
         {
             // 把lua源代码转为bytes后缀并拷贝到输出文件夹
@@ -151,7 +166,6 @@ namespace XLua
                 Directory.Delete(bundleOutPath, true);
             }
             AssetDatabase.Refresh();
-
 
             // 开始打包
             BuildPipeline.BuildAssetBundles(bundleOutPath, BuildAssetBundleOptions.None, EditorUserBuildSettings.activeBuildTarget);
