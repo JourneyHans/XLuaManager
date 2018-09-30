@@ -10,23 +10,25 @@ namespace XLua
 {
     public static class BuildLuaToAssetBundle
     {
-        private static string bytesPath = "Assets/MyTest/Out";            // 输出的 *.bytes文件所在目录
-        private static string luaPath = "Assets/MyTest/XLua/Logic";     // lua源文件
+        private static string bytesPath = "/../LuaLogic/Out";   // 输出的 *.bytes文件所在目录
+        private static string luaPath = "/../LuaLogic";     // lua源文件
+        private static string bundlePath = "/../StreamingAssets/LuaHotfix";  // 打包后放的位置
 
-        [MenuItem("XLua/Clean Lua AssetBundle", false, 20)]
-        public static void CleanAssetBundle()
-        {
-            string bundleOutPath = Path.Combine(Application.streamingAssetsPath, "bundle");
-            if (!Directory.Exists(bundleOutPath))
-            {
-                Directory.CreateDirectory(bundleOutPath);
-            }
-            else
-            {
-                Directory.Delete(bundleOutPath, true);
-            }
-            AssetDatabase.Refresh();
-        }
+//        [MenuItem("XLua/Clean Lua AssetBundle", false, 20)]
+//        public static void CleanAssetBundle()
+//        {
+//            string bundleOutPath = Path.Combine(Application.streamingAssetsPath, "bundle");
+//            if (!Directory.Exists(bundleOutPath))
+//            {
+//                Directory.CreateDirectory(bundleOutPath);
+//            }
+//            else
+//            {
+//                Directory.Delete(bundleOutPath, true);
+//            }
+//
+//            ClearBytesFile();
+//        }
 
         [MenuItem("XLua/Build To AssetBundle", false, 21)]
         public static void BuildToAssetBundle()
@@ -53,20 +55,12 @@ namespace XLua
         static void CopyLuaFileToBytes()
         {
             // 清理这个目录下的 *.bytes文件，方便重新生成
-            if (!Directory.Exists(bytesPath))
-            {
-                Directory.CreateDirectory(bytesPath);
-            }
-            else
-            {
-                Directory.Delete(bytesPath, true);
-            }
-            AssetDatabase.Refresh();
+            CheckAndCreateDirectory(Application.dataPath + bytesPath);
 
             // 读取luaPath下的lua源文件
             // 把 *.lua文件都转化为 *.bytes文件
             // 然后拷贝到outPath下
-            string[] files = Directory.GetFiles(luaPath, "*.lua", SearchOption.AllDirectories);
+            string[] files = Directory.GetFiles(Application.dataPath + luaPath, "*.lua", SearchOption.AllDirectories);
 
             for (int i = 0; i < files.Length; i++)
             {
@@ -156,16 +150,8 @@ namespace XLua
         // 开始打包
         static void BuildAssetBundles()
         {
-            string bundleOutPath = Path.Combine(Application.streamingAssetsPath, "bundle/xlua");
-            if (!Directory.Exists(bundleOutPath))
-            {
-                Directory.CreateDirectory(bundleOutPath);
-            }
-            else
-            {
-                Directory.Delete(bundleOutPath, true);
-            }
-            AssetDatabase.Refresh();
+            string bundleOutPath = Application.dataPath + bundlePath;
+            CheckAndCreateDirectory(bundleOutPath);
 
             // 开始打包
             BuildPipeline.BuildAssetBundles(bundleOutPath, BuildAssetBundleOptions.None, EditorUserBuildSettings.activeBuildTarget);
@@ -180,6 +166,16 @@ namespace XLua
             {
                 Directory.Delete(bytesPath, true);
             }
+            AssetDatabase.Refresh();
+        }
+
+        static void CheckAndCreateDirectory(string path)
+        {
+            if (Directory.Exists(path))
+            {
+                Directory.Delete(path, true);
+            }
+            Directory.CreateDirectory(path);
             AssetDatabase.Refresh();
         }
     }
