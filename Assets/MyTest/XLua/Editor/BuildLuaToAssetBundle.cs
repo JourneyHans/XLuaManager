@@ -14,6 +14,9 @@ namespace XLua
         private static string luaPath = "/../LuaLogic";     // lua源文件
         private static string bundlePath = "/../StreamingAssets/LuaHotfix";  // 打包后放的位置
 
+        private static int bundleIndex;
+        private static AssetBundleBuild[] luaBundleList;
+
 //        [MenuItem("XLua/Clean Lua AssetBundle", false, 20)]
 //        public static void CleanAssetBundle()
 //        {
@@ -33,6 +36,9 @@ namespace XLua
         [MenuItem("XLua/Build To AssetBundle", false, 21)]
         public static void BuildToAssetBundle()
         {
+            // 初始化索引
+            bundleIndex = 0;
+
             // 把lua源代码转为bytes后缀并拷贝到输出文件夹
             CopyLuaFileToBytes();
 
@@ -61,6 +67,9 @@ namespace XLua
             // 把 *.lua文件都转化为 *.bytes文件
             // 然后拷贝到outPath下
             string[] files = Directory.GetFiles(Application.dataPath + luaPath, "*.lua", SearchOption.AllDirectories);
+
+            // 设置luaBundle的大小，只打包lua代码
+            luaBundleList = new AssetBundleBuild[files.Length];
 
             for (int i = 0; i < files.Length; i++)
             {
@@ -100,6 +109,7 @@ namespace XLua
             DirectoryInfo folder = new DirectoryInfo(source);
             FileSystemInfo[] files = folder.GetFileSystemInfos();
             int length = files.Length;
+
             for (int i = 0; i < length; i++)
             {
                 if (files[i] is DirectoryInfo)
@@ -119,7 +129,7 @@ namespace XLua
         // 设置要打包的文件
         static void SetBundleName(string source)
         {
-//            Debug.Log("Pack source: " + source);
+//            Debug.Log("[SetBundleName] source: " + source);
             string _source = source.Replace("\\", "/");
             string _assetPath = "Assets" + _source.Substring(Application.dataPath.Length);
 
@@ -127,24 +137,30 @@ namespace XLua
 
             // 自动获取依赖项并给其资源设置AssetBundleName
             string[] dependencies = AssetDatabase.GetDependencies(_assetPath);
-            foreach (var dependency in dependencies)
-            {
-//                Debug.Log("Dependency: " + dependency);
-                if (!dependency.EndsWith(".bytes"))      // 只打包bytes
-                {
-                    continue;
-                }
 
-                AssetImporter assetImporter = AssetImporter.GetAtPath(dependency);
-                string pathTem = dependency.Substring("Assets".Length + 1).Replace("Out/", "");
-//                Debug.Log("pathTem: " + pathTem);
-                string assetName = pathTem.Substring(pathTem.IndexOf("/", StringComparison.Ordinal) + 1);
-//                Debug.Log("assetname: " + assetName.ToLower());
-//                Debug.Log("assetImporter is null?: " + (assetImporter == null));
-                assetImporter.assetBundleName = assetName.ToLower();
-//                Debug.Log("assetBundleName: " + assetImporter.assetBundleName);
-//                Debug.Log("--------------------------------");
+            // Lua文件打包不存在依赖项，所以都取第一个依赖
+            string dependency = dependencies[0];
+
+//            Debug.Log("Dependency: " + dependency);
+            if (!dependency.EndsWith(".bytes")) // 只打包bytes
+            {
+                return;
             }
+
+            AssetImporter assetImporter = AssetImporter.GetAtPath(dependency);
+            string pathTem = dependency.Substring("Assets".Length + 1).Replace("Out/", "");
+//            Debug.Log("pathTem: " + pathTem);
+            string assetName = pathTem.Substring(pathTem.IndexOf("/", StringComparison.Ordinal) + 1);
+//            Debug.Log("assetname: " + assetName.ToLower());
+//            Debug.Log("assetImporter is null?: " + (assetImporter == null));
+            assetImporter.assetBundleName = assetName.ToLower();
+
+            luaBundleList[bundleIndex].assetBundleName = assetImporter.assetBundleName;
+            luaBundleList[bundleIndex].assetNames = new[] {assetImporter.assetPath};
+            bundleIndex++;
+
+//            Debug.Log("assetBundleName: " + assetImporter.assetBundleName);
+//            Debug.Log("--------------------------------");
         }
 
         // 开始打包
@@ -154,7 +170,7 @@ namespace XLua
             CheckAndCreateDirectory(bundleOutPath);
 
             // 开始打包
-            BuildPipeline.BuildAssetBundles(bundleOutPath, BuildAssetBundleOptions.None, EditorUserBuildSettings.activeBuildTarget);
+            BuildPipeline.BuildAssetBundles(bundleOutPath, luaBundleList, BuildAssetBundleOptions.None, EditorUserBuildSettings.activeBuildTarget);
 
             AssetDatabase.Refresh();
         }
