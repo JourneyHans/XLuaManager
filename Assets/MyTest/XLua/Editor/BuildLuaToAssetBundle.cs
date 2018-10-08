@@ -10,7 +10,7 @@ namespace XLua
 {
     public static class BuildLuaToAssetBundle
     {
-        private static string bytesPath = "/../LuaLogic/Out";   // 输出的 *.bytes文件所在目录
+        private static string bytesPath = "Assets/XLua/Out";   // 输出的 *.bytes文件所在目录，这个目录需要放在Assets下，不然没法设置bundleName以及打包操作
         private static string luaPath = "/../LuaLogic";     // lua源文件
         private static string bundlePath = "/../StreamingAssets/LuaHotfix";  // 打包后放的位置
 
@@ -55,7 +55,7 @@ namespace XLua
         static void CopyLuaFileToBytes()
         {
             // 清理这个目录下的 *.bytes文件，方便重新生成
-            CheckAndCreateDirectory(Application.dataPath + bytesPath);
+            CheckAndCreateDirectory(bytesPath);
 
             // 读取luaPath下的lua源文件
             // 把 *.lua文件都转化为 *.bytes文件
@@ -136,13 +136,13 @@ namespace XLua
                 }
 
                 AssetImporter assetImporter = AssetImporter.GetAtPath(dependency);
-                string pathTem = dependency.Substring("Assets".Length + 1);
+                string pathTem = dependency.Substring("Assets".Length + 1).Replace("Out/", "");
 //                Debug.Log("pathTem: " + pathTem);
                 string assetName = pathTem.Substring(pathTem.IndexOf("/", StringComparison.Ordinal) + 1);
 //                Debug.Log("assetname: " + assetName.ToLower());
 //                Debug.Log("assetImporter is null?: " + (assetImporter == null));
-//                Debug.Log("assetBundleName: " + assetImporter.assetBundleName);
                 assetImporter.assetBundleName = assetName.ToLower();
+//                Debug.Log("assetBundleName: " + assetImporter.assetBundleName);
 //                Debug.Log("--------------------------------");
             }
         }

@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 2816274775
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: hotfix_ex.lua.bytes
+      Dependencies: {}
+    Info_1:
+      Name: main.lua.bytes
+      Dependencies: {}
+    Info_2:
+      Name: target.lua.bytes
+      Dependencies: {}
+    Info_3:
+      Name: util.lua.bytes
+      Dependencies: {}
