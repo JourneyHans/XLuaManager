@@ -13,7 +13,7 @@ public class XLuaManager : Singleton<XLuaManager>
     public void Init()
     {
 //        lua_ab_path = Application.persistentDataPath + "/bundle/xlua/out/";     // 正确热更新模式下读这个路径
-        lua_ab_path = Application.streamingAssetsPath.Replace("/Assets", "") + "/LuaHotfix/out/";    // 本地模式
+        lua_ab_path = Application.streamingAssetsPath.Replace("/Assets", "") + "/LuaHotfix/";    // 本地模式
         Debug.Log(lua_ab_path);
 
         luaEnv = new LuaEnv();
