@@ -14,7 +14,6 @@ public class XLuaManager : Singleton<XLuaManager>
     {
 //        lua_ab_path = Application.persistentDataPath + "/bundle/xlua/out/";     // 正确热更新模式下读这个路径
         lua_ab_path = Application.streamingAssetsPath.Replace("/Assets", "") + "/LuaHotfix/";    // 本地模式
-        Debug.Log(lua_ab_path);
 
         luaEnv = new LuaEnv();
         luaEnv.AddLoader(MyLoader);
@@ -30,7 +29,7 @@ public class XLuaManager : Singleton<XLuaManager>
         return luaFile.bytes;
     }
 
-    void OnDestroy()
+    public void Destroy()
     {
         luaEnv.Dispose();
     }
