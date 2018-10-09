@@ -1,4 +1,4 @@
-local util = require ("util")
+local util = require ("framework/util")
 
 util.hotfix_ex(CS.Hotfix_ex, "TargetMethod", function(self)
 	self:TargetMethod()		-- 调用一次原有方法
