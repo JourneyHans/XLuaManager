@@ -17,22 +17,6 @@ namespace XLua
         private static int bundleIndex;
         private static AssetBundleBuild[] luaBundleList;
 
-        //        [MenuItem("XLua/Clean Lua AssetBundle", false, 20)]
-        //        public static void CleanAssetBundle()
-        //        {
-        //            string bundleOutPath = Path.Combine(Application.streamingAssetsPath, "bundle");
-        //            if (!Directory.Exists(bundleOutPath))
-        //            {
-        //                Directory.CreateDirectory(bundleOutPath);
-        //            }
-        //            else
-        //            {
-        //                Directory.Delete(bundleOutPath, true);
-        //            }
-        //
-        //            ClearBytesFile();
-        //        }
-
         [MenuItem("XLua/Build To AssetBundle", false, 21)]
         public static void BuildToAssetBundle()
         {
@@ -51,8 +35,13 @@ namespace XLua
             // 开始打包
             BuildAssetBundles();
 
-            // 打包完毕后清理掉生成的bytes文件
-            ClearBytesFile();
+            // 压缩打包后的文件
+            ZipAssetBundles();
+
+            // 打包完毕后清理掉多余的文件
+            // 1. 生成的bytes文件
+            // 2. 打包后的文件
+            ClearUselessFile();
 
             Debug.Log("XLua 打包完成");
             EditorUtility.ClearProgressBar();
@@ -78,8 +67,8 @@ namespace XLua
             {
                 float progress = (float)i / files.Length;
                 EditorUtility.DisplayProgressBar("Copy lua file to bytes", "copy file..." + Mathf.Round(progress * 100) + "%", progress);
-                string bytes_file_name = Path.GetFileName(files[i]);
-                FileUtil.CopyFileOrDirectory(files[i], bytesPath + "/" + bytes_file_name + ".bytes");
+                string lua_file_name = Path.GetFileName(files[i]);
+                FileUtil.CopyFileOrDirectory(files[i], bytesPath + "/" + lua_file_name + ".bytes");
             }
 
             AssetDatabase.Refresh();
@@ -198,12 +187,26 @@ namespace XLua
             AssetDatabase.Refresh();
         }
 
+        // 压缩打包后的文件
+        static void ZipAssetBundles()
+        {
+            string zipToFile = Application.dataPath + bundlePath + ".zip";
+            string[] files = Directory.GetFiles(Application.dataPath + bundlePath);
+            ZipUtil.Zip(zipToFile, files);
+        }
+
         // 打包完毕后清理掉生成的bytes文件
-        static void ClearBytesFile()
+        static void ClearUselessFile()
         {
             if (Directory.Exists(bytesPath))
             {
                 Directory.Delete(bytesPath, true);
+            }
+
+            string bundleFullPath = Application.dataPath + bundlePath;
+            if (Directory.Exists(bundleFullPath))
+            {
+                Directory.Delete(bundleFullPath, true);
             }
             AssetDatabase.Refresh();
         }
