@@ -2,16 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEngine;
 using XLua;
 
 public class XLuaManager : Singleton<XLuaManager>
 {
     private LuaEnv luaEnv;
-    private string luaPath = "/../LuaLogic";     // lua源文件
     private string lua_ab_path;
 
     private bool localMode = false;
+
+    private AssetBundleManifest hotFixManifest;
+    private Dictionary<string, AssetBundle> bundleMap = new Dictionary<string, AssetBundle>();
+
+    private StringBuilder sb = new StringBuilder();
 
     public void Init()
     {
@@ -28,37 +33,74 @@ public class XLuaManager : Singleton<XLuaManager>
         {
             Debug.Log("XLua AB模式");
 
-            // 解压打包后的文件
-            string zipFilePath = lua_ab_path.Remove(lua_ab_path.Length - 1);
-            ZipUtil.Unzip(zipFilePath + ".zip", lua_ab_path);
+            HandleAB();
 
             luaEnv.AddLoader(LoaderByAB);
         }
         luaEnv.DoString("require 'main'");
     }
 
-    // AB模式下的loader，使用打包成AB的lua文件
-    public byte[] LoaderByAB(ref string fileName)
+    // 处理AssetBundle
+    private void HandleAB()
     {
-        int fileStartIdx = fileName.LastIndexOf('/') + 1;
-        if (fileStartIdx != 0)
-        {
-            fileName = fileName.Remove(0, fileStartIdx);
-        }
-        Debug.Log("LoaderByAB: " + fileName);
+        AssetBundle hotFixAB = AssetBundle.LoadFromFile(lua_ab_path + "LuaHotfix");
+        hotFixManifest = hotFixAB.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
+        hotFixAB.Unload(false);
 
-        string fullPath = lua_ab_path + fileName + ".lua.bytes";
-        byte[] bytes = File.ReadAllBytes(fullPath);
-        AssetBundle bundle = AssetBundle.LoadFromMemory(bytes);
-        TextAsset luaFile = bundle.LoadAsset<TextAsset>(fileName + ".lua");
-        return luaFile.bytes;
+        foreach (string luaBundleName in hotFixManifest.GetAllAssetBundles())
+        {
+            Debug.Log("luaBundleName: " + luaBundleName);
+            AssetBundle bundle = AssetBundle.LoadFromFile(lua_ab_path + luaBundleName);
+            if (bundle != null)
+            {
+                string bundleName = luaBundleName.Replace("lua/", string.Empty).Replace(".unity3d", "");
+                bundleMap[bundleName] = bundle;
+            }
+        }
+    }
+
+    // AB模式下的loader，使用打包成AB的lua文件
+    private byte[] LoaderByAB(ref string fileName)
+    {
+        byte[] buffer = null;
+        sb.Append("lua");
+        int pos = fileName.LastIndexOf('/');
+        if (pos > 0)
+        {
+            sb.Append("_");
+            sb.Append(fileName, 0, pos).Replace('/', '_');
+            fileName = fileName.Substring(pos + 1);
+        }
+
+        if (!fileName.EndsWith(".lua"))
+        {
+            fileName += ".lua";
+        }
+
+        fileName += ".bytes";
+        AssetBundle bundle;
+        bundleMap.TryGetValue(sb.ToString(), out bundle);
+        if (bundle != null)
+        {
+            TextAsset luaCode = bundle.LoadAsset<TextAsset>(fileName);
+            if (luaCode != null)
+            {
+                buffer = luaCode.bytes;
+                Resources.UnloadAsset(luaCode);
+            }
+        }
+
+        sb.Length = 0;
+        sb.Capacity = 0;
+
+        return buffer;
     }
 
     // 本地模式的loader，使用lua源文件
-    public byte[] LoaderByLocal(ref string fileName)
+    private byte[] LoaderByLocal(ref string fileName)
     {
-        string fullPath = Application.dataPath + luaPath + "/" + fileName + ".lua";
-        return System.Text.Encoding.UTF8.GetBytes(File.ReadAllText(fullPath));
+        string fullPath = Application.dataPath + "/../LuaLogic/" + fileName + ".lua";
+        return Encoding.UTF8.GetBytes(File.ReadAllText(fullPath));
     }
 
     public void Destroy()

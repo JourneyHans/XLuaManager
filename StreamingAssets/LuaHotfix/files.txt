@@ -1,0 +1,6 @@
+LuaHotfix|22e14396e1f980dd12bb85146babff75
+LuaHotfix.manifest|669218f38d7a02ed0b04efcfe430b62b
+lua/lua.unity3d|38bbe3c6c4b143588a1d147a367b69aa
+lua/lua.unity3d.manifest|bbc3a8790937b8a3a58288f90623f48b
+lua/lua_framework.unity3d|02dcc69ff88bb73eeaa016a239d83bc7
+lua/lua_framework.unity3d.manifest|98fe5cca4d711e96c941b165c8cd0e0e

@@ -212,14 +212,14 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>Assets/Plugins/Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/1/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@1.0.1/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Purchasing">
       <HintPath>C:/Users/1/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/UnityEngine.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="Ionic.Zip">
-      <HintPath>Assets/Plugins/Ionic.Zip.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -229,10 +229,6 @@
     <None Include="Assets\XLua\CHANGELOG.txt" />
     <None Include="Assets\XLua\Gen\Resources\hotfix_id_map.lua.txt" />
     <None Include="Assets\XLua\Gen\link.xml" />
-    <None Include="Assets\XLua\Resources\perf\memory.lua.txt" />
-    <None Include="Assets\XLua\Resources\perf\profiler.lua.txt" />
-    <None Include="Assets\XLua\Resources\tdr\tdr.lua.txt" />
-    <None Include="Assets\XLua\Resources\xlua\util.lua.txt" />
     <None Include="Assets\XLua\Src\Editor\LinkXmlGen\LinkXmlGen.tpl.txt" />
     <None Include="Assets\XLua\Src\Editor\Template\LuaClassWrap.tpl.txt" />
     <None Include="Assets\XLua\Src\Editor\Template\LuaClassWrapGCM.tpl.txt" />

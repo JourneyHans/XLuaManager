@@ -1,16 +1,10 @@
 ManifestFileVersion: 0
-CRC: 3464777815
+CRC: 3427927606
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: hotfix_ex.lua.bytes
+      Name: lua/lua_framework.unity3d
       Dependencies: {}
     Info_1:
-      Name: main.lua.bytes
-      Dependencies: {}
-    Info_2:
-      Name: target.lua.bytes
-      Dependencies: {}
-    Info_3:
-      Name: util.lua.bytes
+      Name: lua/lua.unity3d
       Dependencies: {}
