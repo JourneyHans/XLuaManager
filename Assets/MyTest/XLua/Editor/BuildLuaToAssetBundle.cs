@@ -12,8 +12,8 @@ namespace XLua
     {
         static string bytesPath = "Assets/XLua/Out";   // 输出的 *.bytes文件所在目录，这个目录需要放在Assets下，不然没法设置bundleName以及打包操作
         static string luaPath = "/../LuaLogic";     // lua源文件
-        static string bundlePath = "/../StreamingAssets/LuaHotfix";  // 打包后放的位置
-
+        static string bundlePath = "/StreamingAssets/LuaHotfix";  // 打包后放的位置
+        
         static List<AssetBundleBuild> luaBundleMaps = new List<AssetBundleBuild>();     // 打包map
         static List<string> paths = new List<string>();
         static List<string> files = new List<string>();

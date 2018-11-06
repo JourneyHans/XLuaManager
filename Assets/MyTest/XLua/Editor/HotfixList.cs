@@ -137,9 +137,9 @@ public static class HotfixList
     {
         get
         {
-            return (from type in Assembly.Load("Assembly-CSharp").GetExportedTypes()
+            return from type in Assembly.Load("Assembly-CSharp").GetExportedTypes()
                 where type.Namespace == null || !type.Namespace.StartsWith("XLua")
-                select type);
+                select type;
         }
     }
 

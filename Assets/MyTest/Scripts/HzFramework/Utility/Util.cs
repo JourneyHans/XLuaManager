@@ -6,6 +6,9 @@ using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
 
+/// <summary>
+/// 通用工具类，不太好分类的工具就放这里
+/// </summary>
 public class Util
 {
     /// <summary>
