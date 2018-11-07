@@ -137,11 +137,22 @@ public static class HotfixList
     {
         get
         {
-            return from type in Assembly.Load("Assembly-CSharp").GetExportedTypes()
-                where type.Namespace == null || !type.Namespace.StartsWith("XLua")
-                select type;
+            return (from type in Assembly.Load("Assembly-CSharp").GetExportedTypes()
+                    where type.Namespace == null || !type.Namespace.StartsWith("XLua")
+                    select type);
         }
     }
+
+    //C#静态调用Lua的配置（包括事件的原型），仅可以配delegate，interface
+    [CSharpCallLua]
+    public static List<Type> CSharpCallLua = new List<Type>() {
+        typeof(Action),
+        typeof(Func<double, double, double>),
+        typeof(Action<string>),
+        typeof(Action<double>),
+        typeof(UnityEngine.Events.UnityAction),
+        typeof(System.Collections.IEnumerator)
+    };
 
     //--------------begin 热补丁自动化配置-------------------------
     static bool hasGenericParameter(Type type)
@@ -167,7 +178,7 @@ public static class HotfixList
         return false;
     }
 
-//     配置某Assembly下所有涉及到的delegate到CSharpCallLua下，Hotfix下拿不准那些delegate需要适配到lua function可以这么配置
+    //     配置某Assembly下所有涉及到的delegate到CSharpCallLua下，Hotfix下拿不准那些delegate需要适配到lua function可以这么配置
     [CSharpCallLua]
     static IEnumerable<Type> AllDelegate
     {
@@ -192,23 +203,24 @@ public static class HotfixList
 
             allTypes = allTypes.Distinct().ToList();
             var allMethods = from type in allTypes
-                from method in type.GetMethods(flag)
-                select method;
+                             from method in type.GetMethods(flag)
+                             select method;
             var returnTypes = from method in allMethods
-                select method.ReturnType;
+                              select method.ReturnType;
             var paramTypes = allMethods.SelectMany(m => m.GetParameters()).Select(pinfo =>
                 pinfo.ParameterType.IsByRef ? pinfo.ParameterType.GetElementType() : pinfo.ParameterType);
             var fieldTypes = from type in allTypes
-                from field in type.GetFields(flag)
-                select field.FieldType;
+                             from field in type.GetFields(flag)
+                             select field.FieldType;
             return (returnTypes.Concat(paramTypes).Concat(fieldTypes))
                 .Where(t => t.BaseType == typeof(MulticastDelegate) && !hasGenericParameter(t)).Distinct();
         }
     }
-//    --------------end 热补丁自动化配置-------------------------
+    //    --------------end 热补丁自动化配置-------------------------
 
     //黑名单
-    [BlackList] public static List<List<string>> BlackList = new List<List<string>>()
+    [BlackList]
+    public static List<List<string>> BlackList = new List<List<string>>()
     {
         new List<string>() {"System.Xml.XmlNodeList", "ItemOf"},
         new List<string>() {"UnityEngine.WWW", "movie"},

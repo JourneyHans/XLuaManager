@@ -103,6 +103,18 @@
     <None Include="Assets\StreamingAssets\LuaHotfix\files.txt" />
     <None Include="Assets\XLua\Gen\Resources\hotfix_id_map.lua.txt" />
     <None Include="Assets\XLua\CHANGELOG.txt" />
+    <Reference Include="UnityEditor.StandardEvents">
+      <HintPath>D:/PersonalProject_Git/XLuaManager/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>D:/PersonalProject_Git/XLuaManager/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PackageManagerUI.Editor">
+      <HintPath>D:/PersonalProject_Git/XLuaManager/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>D:/PersonalProject_Git/XLuaManager/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
     </Reference>

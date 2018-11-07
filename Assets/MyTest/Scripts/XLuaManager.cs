@@ -11,7 +11,7 @@ public class XLuaManager : Singleton<XLuaManager>
     private LuaEnv luaEnv;
     private string lua_ab_path;
 
-    private bool localMode = false;     // 本地模式开关
+    private bool localMode = true;     // 本地模式开关
 
     private AssetBundleManifest hotFixManifest;
     private Dictionary<string, AssetBundle> bundleMap = new Dictionary<string, AssetBundle>();
