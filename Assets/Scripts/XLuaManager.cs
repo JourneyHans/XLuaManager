@@ -56,6 +56,7 @@ public class XLuaManager : Singleton<XLuaManager>
     private void HandleLuaVersionFiles()
     {
         string[] content = File.ReadAllLines(filesTxtPath, Encoding.UTF8);
+
         foreach (string line in content)
         {
             string[] split = line.Split('|');
