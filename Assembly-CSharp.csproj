@@ -61,20 +61,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MyTest\GameManager.cs" />
-    <Compile Include="Assets\MyTest\Scripts\DownloadManager.cs" />
-    <Compile Include="Assets\MyTest\Scripts\HzFramework\IO\IOManager.cs" />
-    <Compile Include="Assets\MyTest\Scripts\HzFramework\Singleton\Singleton.cs" />
-    <Compile Include="Assets\MyTest\Scripts\HzFramework\Singleton\SingletonManager.cs" />
-    <Compile Include="Assets\MyTest\Scripts\HzFramework\Singleton\SingletonUnity.cs" />
-    <Compile Include="Assets\MyTest\Scripts\HzFramework\Utility\PathUtil.cs" />
-    <Compile Include="Assets\MyTest\Scripts\HzFramework\Utility\Util.cs" />
-    <Compile Include="Assets\MyTest\Scripts\Test\Hotfix_ex.cs" />
-    <Compile Include="Assets\MyTest\Scripts\Test\TargetScript.cs" />
-    <Compile Include="Assets\MyTest\Scripts\XLuaManager.cs" />
+    <Compile Include="Assets\Scripts\DownloadManager.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\HzFramework\IO\IOManager.cs" />
+    <Compile Include="Assets\Scripts\HzFramework\Message\Messenger.cs" />
+    <Compile Include="Assets\Scripts\HzFramework\SimpleLoader.cs" />
+    <Compile Include="Assets\Scripts\HzFramework\Singleton\Singleton.cs" />
+    <Compile Include="Assets\Scripts\HzFramework\Singleton\SingletonManager.cs" />
+    <Compile Include="Assets\Scripts\HzFramework\Singleton\SingletonUnity.cs" />
+    <Compile Include="Assets\Scripts\HzFramework\Utility\PathUtil.cs" />
+    <Compile Include="Assets\Scripts\HzFramework\Utility\Util.cs" />
+    <Compile Include="Assets\Scripts\SceneMgr.cs" />
+    <Compile Include="Assets\Scripts\Test\Hotfix_ex.cs" />
+    <Compile Include="Assets\Scripts\Test\TargetScript.cs" />
+    <Compile Include="Assets\Scripts\UI\HotfixPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\LoadingPanel.cs" />
+    <Compile Include="Assets\Scripts\UIBase.cs" />
+    <Compile Include="Assets\Scripts\UIManager.cs" />
+    <Compile Include="Assets\Scripts\XLuaManager.cs" />
     <Compile Include="Assets\XLua\Gen\DelegatesGensBridge.cs" />
     <Compile Include="Assets\XLua\Gen\EnumWrap.cs" />
     <Compile Include="Assets\XLua\Gen\PackUnpack.cs" />
+    <Compile Include="Assets\XLua\Gen\SystemCollectionsIEnumeratorBridge.cs" />
     <Compile Include="Assets\XLua\Gen\WrapPusher.cs" />
     <Compile Include="Assets\XLua\Gen\XLuaGenAutoRegister.cs" />
     <Compile Include="Assets\XLua\Src\CodeEmit.cs" />

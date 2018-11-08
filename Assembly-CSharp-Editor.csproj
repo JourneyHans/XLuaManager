@@ -61,13 +61,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MyTest\Scripts\HzFramework\Editor\CopyPath.cs" />
-    <Compile Include="Assets\MyTest\XLua\Editor\BuildLuaToAssetBundle.cs" />
-    <Compile Include="Assets\MyTest\XLua\Editor\HotfixList.cs" />
+    <Compile Include="Assets\Scripts\HzFramework\Editor\CopyPath.cs" />
     <Compile Include="Assets\XLua\Src\Editor\Generator.cs" />
     <Compile Include="Assets\XLua\Src\Editor\Hotfix.cs" />
     <Compile Include="Assets\XLua\Src\Editor\LinkXmlGen\LinkXmlGen.cs" />
     <Compile Include="Assets\XLua\Src\Editor\TemplateRef.cs" />
+    <Compile Include="Assets\XLuaConfig\Editor\BuildLuaToAssetBundle.cs" />
+    <Compile Include="Assets\XLuaConfig\Editor\HotfixList.cs" />
     <None Include="Assets\XLua\Src\Editor\LinkXmlGen\LinkXmlGen.tpl.txt" />
     <None Include="Assets\XLua\Src\Editor\Template\LuaClassWrapGCM.tpl.txt" />
     <None Include="Assets\XLua\Src\Editor\Template\LuaWrapPusher.tpl.txt" />

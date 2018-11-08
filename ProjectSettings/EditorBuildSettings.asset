@@ -6,5 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MyTest/Hotfix.unity
+    path: Assets/Scene/LoadingScene.unity
     guid: ac26d0c1b7bbbb348b118fe4f886c59f
+  - enabled: 1
+    path: Assets/Scene/HotfixTestScene.unity
+    guid: b781547fc105d334fbbcb4b81ba6fa6c
+  m_configObjects: {}
