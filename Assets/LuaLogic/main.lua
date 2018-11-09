@@ -2,3 +2,4 @@
 -- 打补丁的脚本
 require("simple_fix")
 require("hotfix_ex")
+require("enumTest")

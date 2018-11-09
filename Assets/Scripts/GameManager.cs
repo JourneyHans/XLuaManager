@@ -23,6 +23,11 @@ public class GameManager : SingletonUnity<GameManager>
 
     }
 
+    public void EnterUITestScene()
+    {
+        UIManager.Instance.Show("HomePanel");
+    }
+
     // 测试热修复的场景
     public void EnterHotfixTestScene()
     {

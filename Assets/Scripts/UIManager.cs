@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager: Singleton<UIManager>
 {
@@ -10,6 +11,14 @@ public class UIManager: Singleton<UIManager>
     private Dictionary<string, UIBase> _uiDic = new Dictionary<string, UIBase>();   // UI字典
     private string _uiRootPath = "Assets/UI/";      // UI预制件的路径
 
+    // UI界面的Canvas层级
+    public enum SortOrderLayer
+    {
+        Zero = 0,
+        HomePanel = 10,         // 默认以HomePanel为“基底”，每新开一个界面，默认+10
+        Prompt = 100,
+    }
+
     public void Init()
     {
         _canvasGameObject = GameObject.Find("Canvas");
@@ -18,13 +27,42 @@ public class UIManager: Singleton<UIManager>
         Object.DontDestroyOnLoad(_eventSystemGameObject);
     }
 
-    public void Show(string uiName)
+    public void Show(string uiName, SortOrderLayer layer = SortOrderLayer.HomePanel)
     {
         GameObject uiGO = SimpleLoader.InstantiateGameObject(_uiRootPath + uiName + ".prefab");
         uiGO.transform.SetParent(_canvasGameObject.transform, false);
         UIBase uiBase = uiGO.GetComponent<UIBase>();
         uiBase.UIName = uiName;
         _uiDic.Add(uiName, uiGO.GetComponent<UIBase>());
+
+        Canvas canvas = uiGO.GetComponent<Canvas>();
+        if (canvas == null)
+        {
+            canvas = uiGO.AddComponent<Canvas>();
+        }
+        canvas.overrideSorting = true;
+        canvas.sortingOrder = GetMaxSortOrder(layer) + 10;      // 每新加一个界面，sortingOrder+10
+        uiBase.UICanvas = canvas;
+
+        GraphicRaycaster raycast = uiGO.GetComponent<GraphicRaycaster>();
+        if (raycast == null)
+        {
+             raycast = uiGO.AddComponent<GraphicRaycaster>();
+        }
+        uiBase.Raycast = raycast;
+    }
+
+    public int GetMaxSortOrder(SortOrderLayer layerType)
+    {
+        int maxOrder = (int)layerType;
+        foreach (var uiPair in _uiDic)
+        {
+            if (maxOrder <= uiPair.Value.SortOrder)
+            {
+                maxOrder = uiPair.Value.SortOrder;
+            }
+        }
+        return maxOrder;
     }
 
     public void Close(string uiName)

@@ -74,8 +74,10 @@
     <Compile Include="Assets\Scripts\SceneMgr.cs" />
     <Compile Include="Assets\Scripts\Test\Hotfix_ex.cs" />
     <Compile Include="Assets\Scripts\Test\TargetScript.cs" />
+    <Compile Include="Assets\Scripts\UI\HomePanel.cs" />
     <Compile Include="Assets\Scripts\UI\HotfixPanel.cs" />
     <Compile Include="Assets\Scripts\UI\LoadingPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\TestAPanel.cs" />
     <Compile Include="Assets\Scripts\UIBase.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Scripts\XLuaManager.cs" />

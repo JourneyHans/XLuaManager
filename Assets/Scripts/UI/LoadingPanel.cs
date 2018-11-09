@@ -8,9 +8,8 @@ public class LoadingPanel : UIBase
 {
     private Image _progress;
 
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
         _progress = transform.Find("Progress/Value").GetComponent<Image>();
         _progress.fillAmount = 0f;
 
@@ -27,6 +26,7 @@ public class LoadingPanel : UIBase
             SceneMgr.Instance.LoadScene("HotfixTestScene", delegate
             {
                 GameManager.Instance.EnterHotfixTestScene();
+//                GameManager.Instance.EnterUITestScene();
                 Close();
             });
         }
