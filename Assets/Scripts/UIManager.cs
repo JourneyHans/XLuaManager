@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager: Singleton<UIManager>
 {
+    private GameObject _uiCamera;               // UI相机
     private GameObject _canvasGameObject;       // UI根节点
     private GameObject _eventSystemGameObject;  // 事件接收器
 
@@ -21,6 +22,8 @@ public class UIManager: Singleton<UIManager>
 
     public void Init()
     {
+        _uiCamera = GameObject.Find("UICamera");
+        Object.DontDestroyOnLoad(_uiCamera);
         _canvasGameObject = GameObject.Find("Canvas");
         Object.DontDestroyOnLoad(_canvasGameObject);
         _eventSystemGameObject = GameObject.Find("EventSystem");

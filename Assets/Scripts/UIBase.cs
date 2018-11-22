@@ -11,9 +11,31 @@ public class UIBase : MonoBehaviour
     public Canvas UICanvas { set; get; }    // 控制层级的Canvas
     public int SortOrder { set; get; }      // 层级Order
 
-    // 关闭方法
-    protected virtual void Close()
+    /// <summary>
+    /// 提供给子类重写的刷新方法
+    /// </summary>
+    protected virtual void OnRefresh()
     {
+
+    }
+
+    /// <summary>
+    /// 界面关闭自己的方法
+    /// 请不要重写这个方法，如果需要请重写OnClose方法
+    /// </summary>
+    protected void Close()
+    {
+        OnClose();
         UIManager.Instance.Close(UIName);
+    }
+
+    /// <summary>
+    /// 提供给子类重写的关闭方法，用于当界面关闭时还需要进行额外操作
+    /// 生命周期在界面彻底销毁前
+    /// 如果需要在界面彻底销毁后进行操作，请写在OnDestroy()方法中
+    /// </summary>
+    protected virtual void OnClose()
+    {
+
     }
 }
