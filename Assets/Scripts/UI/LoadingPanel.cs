@@ -32,8 +32,8 @@ public class LoadingPanel : UIBase
 //            // 完成，转到热修测试
 //            SceneMgr.Instance.LoadScene("HotfixTestScene", delegate
 //            {
-//                GameManager.Instance.EnterHotfixTestScene();
 //                Close();
+//                GameManager.Instance.EnterHotfixTestScene();
 //            });
         }
     }
