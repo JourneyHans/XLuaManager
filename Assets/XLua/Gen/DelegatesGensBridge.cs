@@ -626,7 +626,32 @@ namespace XLua
 #endif
 		}
         
-		public int __Gen_Delegate_Imp27(object p0, UIManager.SortOrderLayer p1)
+		public void __Gen_Delegate_Imp27(object p0, UIManager.SortOrderLayer p1, object p2, object p3)
+		{
+#if THREAD_SAFE || HOTFIX_ENABLE
+            lock (luaEnv.luaEnvLock)
+            {
+#endif
+                RealStatePtr L = luaEnv.rawL;
+                int errFunc = LuaAPI.pcall_prepare(L, errorFuncRef, luaReference);
+                ObjectTranslator translator = luaEnv.translator;
+                translator.PushAny(L, p0);
+                translator.Push(L, p1);
+                translator.PushAny(L, p2);
+                translator.PushAny(L, p3);
+                
+                PCall(L, 4, 0, errFunc);
+                
+                
+                
+                LuaAPI.lua_settop(L, errFunc - 1);
+                
+#if THREAD_SAFE || HOTFIX_ENABLE
+            }
+#endif
+		}
+        
+		public int __Gen_Delegate_Imp28(object p0, UIManager.SortOrderLayer p1)
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)
@@ -649,7 +674,7 @@ namespace XLua
 #endif
 		}
         
-		public byte[] __Gen_Delegate_Imp28(object p0, ref string p1)
+		public byte[] __Gen_Delegate_Imp29(object p0, ref string p1)
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)

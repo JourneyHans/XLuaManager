@@ -10,6 +10,7 @@ public class UIBase : MonoBehaviour
     public GraphicRaycaster Raycast { set; get; }
     public Canvas UICanvas { set; get; }    // 控制层级的Canvas
     public int SortOrder { set; get; }      // 层级Order
+
     // 关闭方法
     protected virtual void Close()
     {

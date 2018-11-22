@@ -33,25 +33,39 @@ public class UIManager: Singleton<UIManager>
         uiGO.transform.SetParent(_canvasGameObject.transform, false);
         UIBase uiBase = uiGO.GetComponent<UIBase>();
         uiBase.UIName = uiName;
-        _uiDic.Add(uiName, uiGO.GetComponent<UIBase>());
 
+        // 检测必要组件是否存在
+        CheckComponent(layer, uiGO, uiBase);
+
+        _uiDic.Add(uiName, uiGO.GetComponent<UIBase>());
+//        CheckCurrentUIDIC();
+    }
+
+    // 检测必要组件
+    private void CheckComponent(SortOrderLayer layer, GameObject uiGO, UIBase uiBase)
+    {
         Canvas canvas = uiGO.GetComponent<Canvas>();
         if (canvas == null)
         {
             canvas = uiGO.AddComponent<Canvas>();
         }
+
         canvas.overrideSorting = true;
-        canvas.sortingOrder = GetMaxSortOrder(layer) + 10;      // 每新加一个界面，sortingOrder+10
+        canvas.sortingOrder = GetMaxSortOrder(layer); // 每新加一个界面，sortingOrder+10
+
         uiBase.UICanvas = canvas;
+        uiBase.SortOrder = canvas.sortingOrder;
 
         GraphicRaycaster raycast = uiGO.GetComponent<GraphicRaycaster>();
         if (raycast == null)
         {
-             raycast = uiGO.AddComponent<GraphicRaycaster>();
+            raycast = uiGO.AddComponent<GraphicRaycaster>();
         }
+
         uiBase.Raycast = raycast;
     }
 
+    // 获取指定Layer当前最大的sortingOrder
     public int GetMaxSortOrder(SortOrderLayer layerType)
     {
         int maxOrder = (int)layerType;
@@ -59,12 +73,13 @@ public class UIManager: Singleton<UIManager>
         {
             if (maxOrder <= uiPair.Value.SortOrder)
             {
-                maxOrder = uiPair.Value.SortOrder;
+                maxOrder = uiPair.Value.SortOrder + 10;
             }
         }
         return maxOrder;
     }
 
+    // 关闭一个界面
     public void Close(string uiName)
     {
         if (!_uiDic.ContainsKey(uiName))
@@ -81,5 +96,18 @@ public class UIManager: Singleton<UIManager>
         GameObject uiGO = _uiDic[uiName].gameObject;
         Object.Destroy(uiGO);
         _uiDic.Remove(uiName);
+//        CheckCurrentUIDIC();
+    }
+
+    public void CheckCurrentUIDIC()
+    {
+        Debug.Log("=========== Check UI ===========");
+        Debug.Log("\tUI count: " + _uiDic.Count);
+        foreach (var uiPair in _uiDic)
+        {
+            Debug.Log("\tName: " + uiPair.Key);
+            Debug.Log("\tSortOrder: " + uiPair.Value.SortOrder);
+        }
+        Debug.Log("================================");
     }
 }

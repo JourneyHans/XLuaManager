@@ -22,13 +22,19 @@ public class LoadingPanel : UIBase
 
         if (Math.Abs(value - 1f) <= 0)
         {
-            // 完成，转到主场景
-            SceneMgr.Instance.LoadScene("HotfixTestScene", delegate
+            // 完成，转到UI测试
+            SceneMgr.Instance.LoadScene("UITestScene", delegate
             {
-                GameManager.Instance.EnterHotfixTestScene();
-//                GameManager.Instance.EnterUITestScene();
                 Close();
+                GameManager.Instance.EnterUITestScene();
             });
+
+//            // 完成，转到热修测试
+//            SceneMgr.Instance.LoadScene("HotfixTestScene", delegate
+//            {
+//                GameManager.Instance.EnterHotfixTestScene();
+//                Close();
+//            });
         }
     }
 

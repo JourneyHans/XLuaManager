@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class TargetScript : MonoBehaviour
 {
     public Text title;
-
-    private int tick = 0;
     private string key;
 
 	void Start ()

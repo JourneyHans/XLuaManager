@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/HotfixTestScene.unity
     guid: b781547fc105d334fbbcb4b81ba6fa6c
+  - enabled: 1
+    path: Assets/Scene/UITestScene.unity
+    guid: 430cdadb303be2e438fc109d68c63bfc
   m_configObjects: {}

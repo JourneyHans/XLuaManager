@@ -40,8 +40,9 @@ public class PathUtil
         return "file:///" + persistentDataPath;
 #elif UNITY_IOS
         return "file://" + persistentDataPath;
-#endif
+#else
         return "";
+#endif
     }
 
     /// <summary>
@@ -52,10 +53,11 @@ public class PathUtil
 #if UNITY_EDITOR && !UNITY_EDITOR_OSX
         return "file:///" + Application.streamingAssetsPath + "/";
 #elif UNITY_IOS
-            return "file://" + Application.streamingAssetsPath + "/";
+        return "file://" + Application.streamingAssetsPath + "/";
 #elif UNITY_ANDROID
-            return Application.streamingAssetsPath + "/";
-#endif
+        return Application.streamingAssetsPath + "/";
+#else
         return "";
+#endif
     }
 }
