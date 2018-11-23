@@ -20,6 +20,7 @@ public class UIManager: Singleton<UIManager>
         Prompt = 100,
     }
 
+    // 初始化
     public void Init()
     {
         _uiCamera = GameObject.Find("UICamera");
@@ -30,6 +31,9 @@ public class UIManager: Singleton<UIManager>
         Object.DontDestroyOnLoad(_eventSystemGameObject);
     }
 
+    /// <summary>
+    /// 打开一个界面
+    /// </summary>
     public void Show(string uiName, SortOrderLayer layer = SortOrderLayer.HomePanel)
     {
         GameObject uiGO = SimpleLoader.InstantiateGameObject(_uiRootPath + uiName + ".prefab");
@@ -42,6 +46,21 @@ public class UIManager: Singleton<UIManager>
 
         _uiDic.Add(uiName, uiGO.GetComponent<UIBase>());
 //        CheckCurrentUIDIC();
+    }
+
+    /// <summary>
+    /// 获取一个界面
+    /// </summary>
+    public T GetUI<T>(string uiName) where T : UIBase
+    {
+        if (!_uiDic.ContainsKey(uiName))
+        {
+            return null;
+        }
+        else
+        {
+            return _uiDic[uiName] as T;
+        }
     }
 
     // 检测必要组件
