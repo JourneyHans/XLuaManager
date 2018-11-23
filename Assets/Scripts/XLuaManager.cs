@@ -41,6 +41,10 @@ public class XLuaManager : Singleton<XLuaManager>
         string filesUrl = "ftp://10.128.2.223/LuaHotfix/files.txt";
         DownloadManager.Instance.Download(filesUrl, delegate(WWW www)
         {
+            if (www == null)
+            {
+                return;
+            }
             // 保存files文件
             IOManager.SaveFile(filesTxtPath, www.bytes);
 
