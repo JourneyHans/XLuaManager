@@ -57,10 +57,7 @@ public class UIManager: Singleton<UIManager>
         {
             return null;
         }
-        else
-        {
-            return _uiDic[uiName] as T;
-        }
+        return _uiDic[uiName] as T;
     }
 
     // 检测必要组件
