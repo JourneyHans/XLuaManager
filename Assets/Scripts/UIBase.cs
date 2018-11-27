@@ -9,7 +9,18 @@ public class UIBase : MonoBehaviour
     public string UIName { set; get; }      // 对应UI名称（Prefab名称）
     public GraphicRaycaster Raycast { set; get; }
     public Canvas UICanvas { set; get; }    // 控制层级的Canvas
+    public UIManager.SortOrderLayer OrderLayer { set; get; }    // 所属层级Layer
     public int SortOrder { set; get; }      // 层级Order
+
+    /// <summary>
+    /// 界面刷新方法
+    /// 请不要重写这个方法，这个方法提供给外部调用
+    /// 如果需要请重写OnRefresh
+    /// </summary>
+    public void Refresh()
+    {
+        OnRefresh();
+    }
 
     /// <summary>
     /// 提供给子类重写的刷新方法
@@ -23,7 +34,7 @@ public class UIBase : MonoBehaviour
     /// 界面关闭自己的方法
     /// 请不要重写这个方法，如果需要请重写OnClose方法
     /// </summary>
-    protected void Close()
+    public void Close()
     {
         OnClose();
         UIManager.Instance.Close(UIName);
