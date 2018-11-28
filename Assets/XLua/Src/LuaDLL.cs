@@ -296,6 +296,7 @@ namespace XLua.LuaDLL
             }
             else
             {
+#if !THREAD_SAFE && !HOTFIX_ENABLE
                 if (Encoding.UTF8.GetByteCount(str) > InternalGlobals.strBuff.Length)
                 {
                     byte[] bytes = Encoding.UTF8.GetBytes(str);
@@ -306,6 +307,10 @@ namespace XLua.LuaDLL
                     int bytes_len = Encoding.UTF8.GetBytes(str, 0, str.Length, InternalGlobals.strBuff, 0);
                     xlua_pushlstring(L, InternalGlobals.strBuff, bytes_len);
                 }
+#else
+                var bytes = Encoding.UTF8.GetBytes(str);
+                xlua_pushlstring(L, bytes, bytes.Length);
+#endif
             }
         }
 
@@ -320,6 +325,7 @@ namespace XLua.LuaDLL
             }
             else
             {
+#if !THREAD_SAFE && !HOTFIX_ENABLE
                 int str_len = str.Length;
                 if (InternalGlobals.strBuff.Length < str_len)
                 {
@@ -328,6 +334,10 @@ namespace XLua.LuaDLL
 
                 int bytes_len = Encoding.UTF8.GetBytes(str, 0, str_len, InternalGlobals.strBuff, 0);
                 xlua_pushlstring(L, InternalGlobals.strBuff, bytes_len);
+#else
+                var bytes = Encoding.UTF8.GetBytes(str);
+                xlua_pushlstring(L, bytes, bytes.Length);
+#endif
             }
         }
 
@@ -436,9 +446,6 @@ namespace XLua.LuaDLL
 
         [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
         public static extern int luaopen_i64lib(IntPtr L);//[,,m]
-
-        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int luaopen_perflib(IntPtr L);
 
         [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
         public static extern int luaopen_socket_core(IntPtr L);//[,,m]

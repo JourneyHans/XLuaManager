@@ -447,28 +447,7 @@ namespace XLua
 #endif
 		}
         
-		public string __Gen_Delegate_Imp19()
-		{
-#if THREAD_SAFE || HOTFIX_ENABLE
-            lock (luaEnv.luaEnvLock)
-            {
-#endif
-                RealStatePtr L = luaEnv.rawL;
-                int errFunc = LuaAPI.pcall_prepare(L, errorFuncRef, luaReference);
-                
-                
-                PCall(L, 0, 1, errFunc);
-                
-                
-                string __gen_ret = LuaAPI.lua_tostring(L, errFunc + 1);
-                LuaAPI.lua_settop(L, errFunc - 1);
-                return  __gen_ret;
-#if THREAD_SAFE || HOTFIX_ENABLE
-            }
-#endif
-		}
-        
-		public string __Gen_Delegate_Imp20(object p0)
+		public string __Gen_Delegate_Imp19(object p0)
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)
@@ -490,30 +469,7 @@ namespace XLua
 #endif
 		}
         
-		public void __Gen_Delegate_Imp21(object p0, float p1)
-		{
-#if THREAD_SAFE || HOTFIX_ENABLE
-            lock (luaEnv.luaEnvLock)
-            {
-#endif
-                RealStatePtr L = luaEnv.rawL;
-                int errFunc = LuaAPI.pcall_prepare(L, errorFuncRef, luaReference);
-                ObjectTranslator translator = luaEnv.translator;
-                translator.PushAny(L, p0);
-                LuaAPI.lua_pushnumber(L, p1);
-                
-                PCall(L, 2, 0, errFunc);
-                
-                
-                
-                LuaAPI.lua_settop(L, errFunc - 1);
-                
-#if THREAD_SAFE || HOTFIX_ENABLE
-            }
-#endif
-		}
-        
-		public UnityEngine.UI.GraphicRaycaster __Gen_Delegate_Imp22(object p0)
+		public UnityEngine.UI.GraphicRaycaster __Gen_Delegate_Imp20(object p0)
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)
@@ -535,7 +491,7 @@ namespace XLua
 #endif
 		}
         
-		public UnityEngine.Canvas __Gen_Delegate_Imp23(object p0)
+		public UnityEngine.Canvas __Gen_Delegate_Imp21(object p0)
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)
@@ -550,6 +506,51 @@ namespace XLua
                 
                 
                 UnityEngine.Canvas __gen_ret = (UnityEngine.Canvas)translator.GetObject(L, errFunc + 1, typeof(UnityEngine.Canvas));
+                LuaAPI.lua_settop(L, errFunc - 1);
+                return  __gen_ret;
+#if THREAD_SAFE || HOTFIX_ENABLE
+            }
+#endif
+		}
+        
+		public void __Gen_Delegate_Imp22(object p0, UIManager.SortOrderLayer p1)
+		{
+#if THREAD_SAFE || HOTFIX_ENABLE
+            lock (luaEnv.luaEnvLock)
+            {
+#endif
+                RealStatePtr L = luaEnv.rawL;
+                int errFunc = LuaAPI.pcall_prepare(L, errorFuncRef, luaReference);
+                ObjectTranslator translator = luaEnv.translator;
+                translator.PushAny(L, p0);
+                translator.Push(L, p1);
+                
+                PCall(L, 2, 0, errFunc);
+                
+                
+                
+                LuaAPI.lua_settop(L, errFunc - 1);
+                
+#if THREAD_SAFE || HOTFIX_ENABLE
+            }
+#endif
+		}
+        
+		public UIManager.SortOrderLayer __Gen_Delegate_Imp23(object p0)
+		{
+#if THREAD_SAFE || HOTFIX_ENABLE
+            lock (luaEnv.luaEnvLock)
+            {
+#endif
+                RealStatePtr L = luaEnv.rawL;
+                int errFunc = LuaAPI.pcall_prepare(L, errorFuncRef, luaReference);
+                ObjectTranslator translator = luaEnv.translator;
+                translator.PushAny(L, p0);
+                
+                PCall(L, 1, 1, errFunc);
+                
+                
+                UIManager.SortOrderLayer __gen_ret;translator.Get(L, errFunc + 1, out __gen_ret);
                 LuaAPI.lua_settop(L, errFunc - 1);
                 return  __gen_ret;
 #if THREAD_SAFE || HOTFIX_ENABLE
@@ -602,7 +603,7 @@ namespace XLua
 #endif
 		}
         
-		public void __Gen_Delegate_Imp26(object p0, object p1, UIManager.SortOrderLayer p2)
+		public void __Gen_Delegate_Imp26(object p0, object p1, UIManager.OpenType p2, UIManager.SortOrderLayer p3)
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)
@@ -614,8 +615,9 @@ namespace XLua
                 translator.PushAny(L, p0);
                 translator.PushAny(L, p1);
                 translator.Push(L, p2);
+                translator.Push(L, p3);
                 
-                PCall(L, 3, 0, errFunc);
+                PCall(L, 4, 0, errFunc);
                 
                 
                 
@@ -626,7 +628,7 @@ namespace XLua
 #endif
 		}
         
-		public void __Gen_Delegate_Imp27(object p0, UIManager.SortOrderLayer p1, object p2, object p3)
+		public void __Gen_Delegate_Imp27(object p0, UIManager.SortOrderLayer p1, object p2)
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)
@@ -638,9 +640,8 @@ namespace XLua
                 translator.PushAny(L, p0);
                 translator.Push(L, p1);
                 translator.PushAny(L, p2);
-                translator.PushAny(L, p3);
                 
-                PCall(L, 4, 0, errFunc);
+                PCall(L, 3, 0, errFunc);
                 
                 
                 
@@ -674,7 +675,51 @@ namespace XLua
 #endif
 		}
         
-		public byte[] __Gen_Delegate_Imp29(object p0, ref string p1)
+		public string __Gen_Delegate_Imp29()
+		{
+#if THREAD_SAFE || HOTFIX_ENABLE
+            lock (luaEnv.luaEnvLock)
+            {
+#endif
+                RealStatePtr L = luaEnv.rawL;
+                int errFunc = LuaAPI.pcall_prepare(L, errorFuncRef, luaReference);
+                
+                
+                PCall(L, 0, 1, errFunc);
+                
+                
+                string __gen_ret = LuaAPI.lua_tostring(L, errFunc + 1);
+                LuaAPI.lua_settop(L, errFunc - 1);
+                return  __gen_ret;
+#if THREAD_SAFE || HOTFIX_ENABLE
+            }
+#endif
+		}
+        
+		public void __Gen_Delegate_Imp30(object p0, float p1)
+		{
+#if THREAD_SAFE || HOTFIX_ENABLE
+            lock (luaEnv.luaEnvLock)
+            {
+#endif
+                RealStatePtr L = luaEnv.rawL;
+                int errFunc = LuaAPI.pcall_prepare(L, errorFuncRef, luaReference);
+                ObjectTranslator translator = luaEnv.translator;
+                translator.PushAny(L, p0);
+                LuaAPI.lua_pushnumber(L, p1);
+                
+                PCall(L, 2, 0, errFunc);
+                
+                
+                
+                LuaAPI.lua_settop(L, errFunc - 1);
+                
+#if THREAD_SAFE || HOTFIX_ENABLE
+            }
+#endif
+		}
+        
+		public byte[] __Gen_Delegate_Imp31(object p0, ref string p1)
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)

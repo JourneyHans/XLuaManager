@@ -69,6 +69,8 @@
     <Compile Include="Assets\Scripts\HzFramework\Singleton\Singleton.cs" />
     <Compile Include="Assets\Scripts\HzFramework\Singleton\SingletonManager.cs" />
     <Compile Include="Assets\Scripts\HzFramework\Singleton\SingletonUnity.cs" />
+    <Compile Include="Assets\Scripts\HzFramework\UI\UIBase.cs" />
+    <Compile Include="Assets\Scripts\HzFramework\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\HzFramework\Utility\PathUtil.cs" />
     <Compile Include="Assets\Scripts\HzFramework\Utility\Util.cs" />
     <Compile Include="Assets\Scripts\SceneMgr.cs" />
@@ -78,8 +80,7 @@
     <Compile Include="Assets\Scripts\UI\HotfixPanel.cs" />
     <Compile Include="Assets\Scripts\UI\LoadingPanel.cs" />
     <Compile Include="Assets\Scripts\UI\TestAPanel.cs" />
-    <Compile Include="Assets\Scripts\UIBase.cs" />
-    <Compile Include="Assets\Scripts\UIManager.cs" />
+    <Compile Include="Assets\Scripts\UI\UITestPanel.cs" />
     <Compile Include="Assets\Scripts\XLuaManager.cs" />
     <Compile Include="Assets\XLua\Gen\DelegatesGensBridge.cs" />
     <Compile Include="Assets\XLua\Gen\EnumWrap.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Assets\XLua\Src\CopyByValue.cs" />
     <Compile Include="Assets\XLua\Src\DelegateBridge.cs" />
     <Compile Include="Assets\XLua\Src\GenAttributes.cs" />
+    <Compile Include="Assets\XLua\Src\GenericDelegateBridge.cs" />
     <Compile Include="Assets\XLua\Src\InternalGlobals.cs" />
     <Compile Include="Assets\XLua\Src\LuaBase.cs" />
     <Compile Include="Assets\XLua\Src\LuaDLL.cs" />
@@ -109,10 +111,14 @@
     <Compile Include="Assets\XLua\Src\TemplateEngine\TemplateEngine.cs" />
     <Compile Include="Assets\XLua\Src\TypeExtensions.cs" />
     <Compile Include="Assets\XLua\Src\Utils.cs" />
-    <None Include="Assets\XLua\Gen\link.xml" />
-    <None Include="Assets\StreamingAssets\LuaHotfix\files.txt" />
     <None Include="Assets\XLua\Gen\Resources\hotfix_id_map.lua.txt" />
+    <None Include="Assets\StreamingAssets\LuaHotfix\files.txt" />
+    <None Include="Assets\XLua\Gen\link.xml" />
+    <None Include="Assets\XLua\Resources\xlua\util.lua.txt" />
+    <None Include="Assets\XLua\Resources\perf\profiler.lua.txt" />
+    <None Include="Assets\XLua\Resources\perf\memory.lua.txt" />
     <None Include="Assets\XLua\CHANGELOG.txt" />
+    <None Include="Assets\XLua\Resources\tdr\tdr.lua.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/PersonalProject_Git/XLuaManager/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

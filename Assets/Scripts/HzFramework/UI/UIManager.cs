@@ -55,7 +55,7 @@ public class UIManager: Singleton<UIManager>
         else
         {
             // 新开界面
-            GameObject uiGO = SimpleLoader.InstantiateGameObject(_uiRootPath + uiName);
+            GameObject uiGO = SimpleLoader.InstantiateGameObject(_uiRootPath + uiName + ".prefab");
             uiGO.transform.SetParent(_canvasGameObject.transform, false);
             uiBase = uiGO.GetComponent<UIBase>();
         }

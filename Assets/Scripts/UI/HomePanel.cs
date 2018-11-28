@@ -5,17 +5,27 @@ using UnityEngine.UI;
 
 public class HomePanel : UIBase
 {
-    private Button Btn_ShowA;
+    private Transform BtnList;
+    private Button HotfixTest_Btn;
+    private Button UITest_Btn;
 
     void Awake()
     {
-        Btn_ShowA = transform.Find("ShowA").GetComponent<Button>();
-        Btn_ShowA.onClick.AddListener(ShowACall);
+        BtnList = transform.Find("ScrollView/Viewport/Content");
+        HotfixTest_Btn = BtnList.Find("HotFixTest").GetComponent<Button>();
+        HotfixTest_Btn.onClick.AddListener(ShowHotFixTestPanel);
+
+        UITest_Btn = BtnList.Find("UITest").GetComponent<Button>();
+        UITest_Btn.onClick.AddListener(ShowUITestPanel);
     }
 
-    void ShowACall()
+    void ShowHotFixTestPanel()
     {
-        UIManager.Instance.Show("TestAPanel");
+        UIManager.Instance.Show("HotfixPanel");
     }
 
+    void ShowUITestPanel()
+    {
+        UIManager.Instance.Show("UITestPanel");
+    }
 }
