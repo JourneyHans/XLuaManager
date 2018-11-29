@@ -21,11 +21,11 @@ public class HomePanel : UIBase
 
     void ShowHotFixTestPanel()
     {
-        UIManager.Instance.Show("HotfixPanel");
+        UIManager.Instance.Show<HotfixPanel>();
     }
 
     void ShowUITestPanel()
     {
-        UIManager.Instance.Show("UITestPanel");
+        UIManager.Instance.Show<UITestPanel>();
     }
 }

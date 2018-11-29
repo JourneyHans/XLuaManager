@@ -32,7 +32,7 @@ public class GameManager : SingletonUnity<GameManager>
         UIManager.Instance.Init();          // UI管理器初始化
         DontDestroyOnLoad(gameObject);      // 永不销毁
 
-        UIManager.Instance.Show("LoadingPanel");
+        UIManager.Instance.Show<LoadingPanel>(UIManager.OpenType.Add, UIManager.SortOrderLayer.Zero);
     }
 
     public void EnterHomeScene()
@@ -42,12 +42,12 @@ public class GameManager : SingletonUnity<GameManager>
 
     public void EnterUITestScene()
     {
-        UIManager.Instance.Show("HomePanel");
+        UIManager.Instance.Show<HomePanel>();
     }
 
     // 测试热修复的场景
     public void EnterHotfixTestScene()
     {
-        UIManager.Instance.Show("HotfixPanel");
+        UIManager.Instance.Show<HomePanel>();
     }
 }

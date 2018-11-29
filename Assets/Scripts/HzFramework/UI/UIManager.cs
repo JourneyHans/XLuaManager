@@ -41,8 +41,9 @@ public class UIManager: Singleton<UIManager>
     /// <summary>
     /// 打开一个界面
     /// </summary>
-    public void Show(string uiName, OpenType openType = OpenType.Add, SortOrderLayer layer = SortOrderLayer.HomePanel)
+    public T Show<T>(OpenType openType = OpenType.Add, SortOrderLayer layer = SortOrderLayer.HomePanel) where T : UIBase
     {
+        string uiName = typeof(T).ToString();
         UIBase uiBase;
         if (_uiDic.ContainsKey(uiName))
         {
@@ -76,7 +77,8 @@ public class UIManager: Singleton<UIManager>
         {
             _uiDic.Add(uiName, uiBase);
         }
-        //        CheckCurrentUIDIC();
+//        CheckCurrentUIDIC();
+        return uiBase as T;
     }
 
     /// <summary>
@@ -102,7 +104,7 @@ public class UIManager: Singleton<UIManager>
         }
 
         canvas.overrideSorting = true;
-        canvas.sortingOrder = GetMaxSortOrder(layer);
+        canvas.sortingOrder = GetMaxSortOrder(layer, uiBase.UIName);
 
         uiBase.UICanvas = canvas;
         uiBase.SortOrder = canvas.sortingOrder;
@@ -117,23 +119,27 @@ public class UIManager: Singleton<UIManager>
     }
 
     // 获取指定Layer当前最大的sortingOrder
-    public int GetMaxSortOrder(SortOrderLayer layerType)
+    public int GetMaxSortOrder(SortOrderLayer layerType, string name)
     {
         int maxOrder = (int)layerType;
+//        Debug.Log("----> Start order: " + maxOrder);
         foreach (var uiPair in _uiDic)
         {
-            if (maxOrder <= uiPair.Value.SortOrder)
+            if (maxOrder <= uiPair.Value.SortOrder && name != uiPair.Key)
             {
+//                Debug.LogFormat("----> Compare Order: {0}/{1} ", maxOrder, uiPair.Value.SortOrder);
                 // 每新加一个界面，sortingOrder会根据当前层级增加
                 maxOrder = uiPair.Value.SortOrder + (int)layerType;
             }
         }
+//        Debug.Log("----> Result order: " + maxOrder);
         return maxOrder;
     }
 
     // 关闭一个界面
-    public void Close(string uiName)
+    public void Close<T>(T t = null) where T : UIBase
     {
+        var uiName = t == null ? typeof(T).ToString() : t.GetType().ToString();
         if (!_uiDic.ContainsKey(uiName))
         {
             // 界面已关闭
@@ -142,7 +148,6 @@ public class UIManager: Singleton<UIManager>
         GameObject uiGO = _uiDic[uiName].gameObject;
         Object.Destroy(uiGO);
         _uiDic.Remove(uiName);
-//        CheckCurrentUIDIC();
     }
 
     /// <summary>

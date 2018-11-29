@@ -79,6 +79,8 @@
     <Compile Include="Assets\Scripts\UI\HomePanel.cs" />
     <Compile Include="Assets\Scripts\UI\HotfixPanel.cs" />
     <Compile Include="Assets\Scripts\UI\LoadingPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Prompt\PromptCore.cs" />
+    <Compile Include="Assets\Scripts\UI\Prompt\PromptPanel.cs" />
     <Compile Include="Assets\Scripts\UI\TestAPanel.cs" />
     <Compile Include="Assets\Scripts\UI\UITestPanel.cs" />
     <Compile Include="Assets\Scripts\XLuaManager.cs" />

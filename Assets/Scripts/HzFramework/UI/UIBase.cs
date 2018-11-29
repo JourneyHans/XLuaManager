@@ -37,7 +37,7 @@ public class UIBase : MonoBehaviour
     public void Close()
     {
         OnClose();
-        UIManager.Instance.Close(UIName);
+        UIManager.Instance.Close(this);
     }
 
     /// <summary>
