@@ -19,14 +19,14 @@ public class UITestPanel : UIBase
     void Awake()
     {
         // 返回上一个界面
-        BackBtn = transform.Find("Back").GetComponent<Button>();
+        BackBtn = transform.Find<Button>("Back");
         BackBtn.onClick.AddListener(Close);
 
         BtnList = transform.Find("ScrollView/Viewport/Content");
-        ShowByAddBtn = BtnList.Find("ShowByAdd").GetComponent<Button>();
+        ShowByAddBtn = BtnList.Find<Button>("ShowByAdd");
         ShowByAddBtn.onClick.AddListener(ShowByAddCallback);
 
-        ShowByReplaceBtn = BtnList.Find("ShowByReplace").GetComponent<Button>();
+        ShowByReplaceBtn = BtnList.Find<Button>("ShowByReplace");
         ShowByReplaceBtn.onClick.AddListener(ShowByReplaceCallback);
     }
 

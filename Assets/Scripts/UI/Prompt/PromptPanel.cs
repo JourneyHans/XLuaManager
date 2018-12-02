@@ -15,11 +15,11 @@ public class PromptPanel : UIBase
 
     void Awake()
     {
-        titleTxt = transform.Find("BGMask/Image/Title/Text").GetComponent<Text>();
-        contentTxt = transform.Find("BGMask/Image/Text").GetComponent<Text>();
-        confirmBtn = transform.Find("BGMask/Image/ButtonList/ButtonConfirm").GetComponent<Button>();
+        titleTxt = transform.Find<Text>("BGMask/Image/Title/Text");
+        contentTxt = transform.Find<Text>("BGMask/Image/Text");
+        confirmBtn = transform.Find<Button>("BGMask/Image/ButtonList/ButtonConfirm");
         confirmBtn.onClick.AddListener(ConfirmClick);
-        cancelBtn = transform.Find("BGMask/Image/ButtonList/ButtonCancel").GetComponent<Button>();
+        cancelBtn = transform.Find<Button>("BGMask/Image/ButtonList/ButtonCancel");
         cancelBtn.onClick.AddListener(CancelClick);
     }
 

@@ -10,7 +10,7 @@ public class LoadingPanel : UIBase
 
     void Awake()
     {
-        _progress = transform.Find("Progress/Value").GetComponent<Image>();
+        _progress = transform.Find<Image>("Progress/Value");
         _progress.fillAmount = 0f;
 
         Messenger<float>.AddListener("UpdateResource", SetProgressValue);

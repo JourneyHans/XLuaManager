@@ -16,8 +16,8 @@ public class UIManager: Singleton<UIManager>
     public enum SortOrderLayer
     {
         Zero = 0,
-        HomePanel = 10,
-        Prompt = 100,
+        HomePanel = 100,
+        Prompt = 1000,
     }
 
     // 打开界面的方式

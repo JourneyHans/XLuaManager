@@ -8,15 +8,20 @@ public class HomePanel : UIBase
     private Transform BtnList;
     private Button HotfixTest_Btn;
     private Button UITest_Btn;
+    private Button CharacterTest_Btn;
 
     void Awake()
     {
         BtnList = transform.Find("ScrollView/Viewport/Content");
-        HotfixTest_Btn = BtnList.Find("HotFixTest").GetComponent<Button>();
+
+        HotfixTest_Btn = BtnList.Find<Button>("HotFixTest");
         HotfixTest_Btn.onClick.AddListener(ShowHotFixTestPanel);
 
-        UITest_Btn = BtnList.Find("UITest").GetComponent<Button>();
+        UITest_Btn = BtnList.Find<Button>("UITest");
         UITest_Btn.onClick.AddListener(ShowUITestPanel);
+
+        CharacterTest_Btn = BtnList.Find<Button>("CharacterTest");
+        CharacterTest_Btn.onClick.AddListener(ShowCharacterPanel);
     }
 
     void ShowHotFixTestPanel()
@@ -27,5 +32,10 @@ public class HomePanel : UIBase
     void ShowUITestPanel()
     {
         UIManager.Instance.Show<UITestPanel>();
+    }
+
+    void ShowCharacterPanel()
+    {
+        UIManager.Instance.Show<CharacterPanel>();
     }
 }

@@ -18,19 +18,19 @@ public class HotfixPanel : UIBase
 
     void Awake()
     {
-        BackBtn = transform.Find("Back").GetComponent<Button>();
+        BackBtn = transform.Find<Button>("Back");
         BackBtn.onClick.AddListener(Close);
 
-        SimpleTestBtn = transform.Find("Panel/SimpleTest").GetComponent<Button>();
+        SimpleTestBtn = transform.Find<Button>("Panel/SimpleTest");
         SimpleTestBtn.onClick.AddListener(SimpleBtnCall);
 
-        HotfixExTestBtn = transform.Find("Panel/HotfixExTest").GetComponent<Button>();
+        HotfixExTestBtn = transform.Find<Button>("Panel/HotfixExTest");
         HotfixExTestBtn.onClick.AddListener(HotfixExBtnCall);
 
-        EnumFixTestBtn = transform.Find("Panel/EnumFixTest").GetComponent<Button>();
+        EnumFixTestBtn = transform.Find<Button>("Panel/EnumFixTest");
         EnumFixTestBtn.onClick.AddListener(EnumFixTestBtnCall);
 
-        CollectionFixTestBtn = transform.Find("Panel/CollectionFixTest").GetComponent<Button>();
+        CollectionFixTestBtn = transform.Find<Button>("Panel/CollectionFixTest");
         CollectionFixTestBtn.onClick.AddListener(CollectionFixBtnCall);
     }
 

@@ -9,7 +9,7 @@ public class TestAPanel : UIBase
 
     void Awake()
     {
-        BackBtn = transform.Find("Back").GetComponent<Button>();
+        BackBtn = transform.Find<Button>("Back");
         BackBtn.onClick.AddListener(Close);
     }
 }

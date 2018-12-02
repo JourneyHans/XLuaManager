@@ -6,9 +6,6 @@ using UnityEditor;
 [InitializeOnLoad]
 public static class CopyHierarchyPath
 {
-    private static string _nodeStart = string.Empty;
-    private static string _nodeEnd = string.Empty;
-
     [MenuItem("GameObject/拷贝层级路径", false, 0)]
     static void CopyNodePath()
     {
@@ -17,7 +14,7 @@ public static class CopyHierarchyPath
 
         // 复制到剪切板
         TextEditor editor = new TextEditor();
-        editor.content = new GUIContent(nodePath);
+        editor.text = nodePath;
         editor.SelectAll();
         editor.Copy();
     }

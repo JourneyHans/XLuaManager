@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\DownloadManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\HzFramework\Extend\TransformExtend.cs" />
     <Compile Include="Assets\Scripts\HzFramework\IO\IOManager.cs" />
     <Compile Include="Assets\Scripts\HzFramework\Message\Messenger.cs" />
     <Compile Include="Assets\Scripts\HzFramework\SimpleLoader.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Assets\Scripts\SceneMgr.cs" />
     <Compile Include="Assets\Scripts\Test\Hotfix_ex.cs" />
     <Compile Include="Assets\Scripts\Test\TargetScript.cs" />
+    <Compile Include="Assets\Scripts\UI\CharacterPanel.cs" />
     <Compile Include="Assets\Scripts\UI\HomePanel.cs" />
     <Compile Include="Assets\Scripts\UI\HotfixPanel.cs" />
     <Compile Include="Assets\Scripts\UI\LoadingPanel.cs" />
