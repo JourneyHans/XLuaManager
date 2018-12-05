@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b1663dd7db5b154cba8662d00947e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnableXLua: 0
+  EnableXLua: 1
   XLuaLocalMode: 1
   XLuaTestPack: 0
 --- !u!4 &1424883011

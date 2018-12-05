@@ -1,5 +1,3 @@
-local util = require("framework/util")
-
 xlua.hotfix(CS.HotfixPanel, "CollectionFixBtnCall", function(self)
     print("------------ List测试 ------------")
     for i, v in pairs(self.intList) do

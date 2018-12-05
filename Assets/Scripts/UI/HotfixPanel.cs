@@ -15,6 +15,7 @@ public class HotfixPanel : UIBase
     private Button HotfixExTestBtn;
     private Button EnumFixTestBtn;
     private Button CollectionFixTestBtn;
+    private Button ExtendMethodFixTestBtn;
 
     void Awake()
     {
@@ -32,6 +33,9 @@ public class HotfixPanel : UIBase
 
         CollectionFixTestBtn = transform.Find<Button>("Panel/CollectionFixTest");
         CollectionFixTestBtn.onClick.AddListener(CollectionFixBtnCall);
+
+        ExtendMethodFixTestBtn = transform.Find<Button>("Panel/ExtendMethodTest");
+        ExtendMethodFixTestBtn.onClick.AddListener(ExtendFixBtnCall);
     }
 
     // 普通修复测试，这里会执行lua中修改后的代码，代替掉现有代码
@@ -74,5 +78,21 @@ public class HotfixPanel : UIBase
         {
 
         }
+    }
+
+    // 扩展方法调用测试
+    private void ExtendFixBtnCall()
+    {
+        string test_s = "x";
+        Debug.Log("C# 调用结果：");
+        test_s.StringExtendMethodTest();
+    }
+}
+
+public static class TestMethodExtendClass
+{
+    public static void StringExtendMethodTest(this string s)
+    {
+        Debug.Log("这是一个扩展方法：" + s);
     }
 }
