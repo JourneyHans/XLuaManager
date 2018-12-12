@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneMgr : Singleton<SceneMgr>
 {
+    private Callback _finishCallback;
     /// <summary>
     /// 加载场景
     /// </summary>
@@ -12,10 +13,11 @@ public class SceneMgr : Singleton<SceneMgr>
     /// <param name="callback">完成回调</param>
     public void LoadScene(string sceneName, Callback finishCallback)
     {
-        GameManager.Instance.StartCoroutine(LoadSceneCoroutine(sceneName, finishCallback));
+        _finishCallback = finishCallback;
+        GameManager.Instance.StartCoroutine(LoadSceneCoroutine(sceneName));
     }
 
-    private IEnumerator LoadSceneCoroutine(string sceneName, Callback finishCallback)
+    private IEnumerator LoadSceneCoroutine(string sceneName)
     {
         var asyn = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
         asyn.allowSceneActivation = false;
@@ -28,9 +30,44 @@ public class SceneMgr : Singleton<SceneMgr>
             yield return null;
         }
 
-        if (finishCallback != null)
+        LoadFinish();
+    }
+
+    private void LoadFinish()
+    {
+        if (_finishCallback != null)
         {
-            finishCallback();
+            _finishCallback();
+            _finishCallback = null;
         }
+
+#if UNITY_EDITOR
+        ResetAllMaterials();
+#endif
+    }
+
+    private void ResetAllMaterials()
+    {
+        Renderer[] renders = Object.FindObjectsOfType<Renderer>();
+
+        foreach (Renderer r in renders)
+        {
+            Material[] materials = r.sharedMaterials;
+            string[] shaders = new string[materials.Length];
+
+            for (int i = 0; i < materials.Length; i++)
+            {
+                if (materials[i] == null)
+                    continue;
+
+                shaders[i] = materials[i].shader.name;
+                materials[i].shader = Shader.Find(shaders[i]);
+            }
+        }
+
+        //reset skybox
+        Material mat = RenderSettings.skybox;
+        if (mat != null)
+            mat.shader = Shader.Find(mat.shader.name);
     }
 }

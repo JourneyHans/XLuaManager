@@ -4,19 +4,12 @@ using UnityEngine;
 
 public class ModelManager : Singleton<ModelManager>
 {
-    // 模型部件
-    enum PartIdx
+    public ModelBase CreateModel(ModelPart parts)
     {
-        WeaponR,
-        WeaponL,
-        Head,
-        Body,
-        Hand,
-        Foot,
-    }
-
-    public void CreateModel(int skeletonID, int[] partIDList)
-    {
-
+        Object obj = Resources.Load("Equipment/Hero/aa001/md_c_aa001");
+        GameObject model = Object.Instantiate(obj) as GameObject;
+        ModelBase modelBase = model.GetComponent<ModelBase>();
+        modelBase.GenerateByModelPart(parts);
+        return modelBase;
     }
 }

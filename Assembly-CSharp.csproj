@@ -61,10 +61,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Avatar\CombineSkinnedMgr.cs" />
     <Compile Include="Assets\Scripts\Avatar\ModelBase.cs" />
     <Compile Include="Assets\Scripts\Avatar\ModelManager.cs" />
     <Compile Include="Assets\Scripts\DownloadManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\HzFramework\Extend\StringExtend.cs" />
     <Compile Include="Assets\Scripts\HzFramework\Extend\TransformExtend.cs" />
     <Compile Include="Assets\Scripts\HzFramework\IO\IOManager.cs" />
     <Compile Include="Assets\Scripts\HzFramework\Message\Messenger.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Assets\Scripts\HzFramework\Singleton\SingletonUnity.cs" />
     <Compile Include="Assets\Scripts\HzFramework\UI\UIBase.cs" />
     <Compile Include="Assets\Scripts\HzFramework\UI\UIManager.cs" />
+    <Compile Include="Assets\Scripts\HzFramework\Utility\DebugUtil.cs" />
     <Compile Include="Assets\Scripts\HzFramework\Utility\PathUtil.cs" />
     <Compile Include="Assets\Scripts\HzFramework\Utility\Util.cs" />
     <Compile Include="Assets\Scripts\SceneMgr.cs" />

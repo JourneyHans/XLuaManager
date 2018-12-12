@@ -7,6 +7,10 @@ public class CharacterPanel : UIBase
 {
     private Transform BtnList;
     private Button LoadModelBtn;
+    private Button RemoveModelBtn;
+
+    private ModelBase model;
+
     void Awake()
     {
         BtnList = transform.Find("ScrollView/Viewport/Content");
@@ -15,10 +19,30 @@ public class CharacterPanel : UIBase
 
         LoadModelBtn = BtnList.Find<Button>("LoadModel");
         LoadModelBtn.onClick.AddListener(LoadModelBtnCall);
+        RemoveModelBtn = BtnList.Find<Button>("RemoveModel");
+        RemoveModelBtn.onClick.AddListener(RemoveModelBtnCall);
     }
 
     private void LoadModelBtnCall()
     {
-        Debug.Log("Click LoadModelBtn");
+        if (model != null)
+        {
+            Debug.Log("Already Added");
+            return;
+        }
+        // 模拟这个模型的Excel表
+        string partsIDList = "1001,2001,3001,4001,5001,";
+        int[] iArray = partsIDList.SplitToInt(',');
+        ModelPart parts = new ModelPart(iArray);
+        model = ModelManager.Instance.CreateModel(parts);
+        model.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+    }
+
+    private void RemoveModelBtnCall()
+    {
+        if (model != null)
+        {
+            Destroy(model.gameObject);
+        }
     }
 }

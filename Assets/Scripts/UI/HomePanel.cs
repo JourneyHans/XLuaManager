@@ -9,6 +9,7 @@ public class HomePanel : UIBase
     private Button HotfixTest_Btn;
     private Button UITest_Btn;
     private Button CharacterTest_Btn;
+    private Button AssetbundleTest_Btn;
 
     void Awake()
     {
