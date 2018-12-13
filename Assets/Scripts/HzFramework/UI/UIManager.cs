@@ -66,7 +66,7 @@ public class UIManager: Singleton<UIManager>
         // 替换形式会关闭上个界面
         if (openType == OpenType.Replace)
         {
-            CloseTopUI(layer);
+            CloseTopUI();
         }
 
         // 检测必要组件是否存在并处理层级
@@ -153,9 +153,9 @@ public class UIManager: Singleton<UIManager>
     /// <summary>
     /// 关闭指定层上最高的UI
     /// </summary>
-    private void CloseTopUI(SortOrderLayer layer)
+    private void CloseTopUI()
     {
-        int order = (int)layer;
+        int order = 0;
         UIBase target = null;
         foreach (var uiPair in _uiDic)
         {
