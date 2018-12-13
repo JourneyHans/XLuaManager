@@ -11,9 +11,9 @@ public class SceneMgr : Singleton<SceneMgr>
     /// </summary>
     /// <param name="sceneName">场景名称</param>
     /// <param name="callback">完成回调</param>
-    public void LoadScene(string sceneName, Callback finishCallback)
+    public void LoadScene(string sceneName, Callback callback = null)
     {
-        _finishCallback = finishCallback;
+        _finishCallback = callback;
         GameManager.Instance.StartCoroutine(LoadSceneCoroutine(sceneName));
     }
 
