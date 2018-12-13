@@ -101,6 +101,30 @@ public class ModelBase : MonoBehaviour
     }
 
     /// <summary>
+    /// 设置坐标（local）
+    /// </summary>
+    public void SetLocalPosition(Vector3 pos)
+    {
+        transform.localPosition = pos;
+    }
+
+    /// <summary>
+    /// 设置旋转（local/欧拉角）
+    /// </summary>
+    public void SetLocalRotation(Vector3 rotation)
+    {
+        transform.localEulerAngles = rotation;
+    }
+
+    /// <summary>
+    /// 设置旋转（local/四元数）
+    /// </summary>
+    public void SetLocalRotation(Quaternion quaternion)
+    {
+        transform.localRotation = quaternion;
+    }
+
+    /// <summary>
     /// 查找root节点下的例子特效根节点，例子特效根节点命名格式为：fx_
     /// 返回一个字典，Key为查找到的根节点，Value为挂载在模型上的transform的名称
     /// </summary>

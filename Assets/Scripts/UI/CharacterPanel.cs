@@ -35,7 +35,7 @@ public class CharacterPanel : UIBase
         int[] iArray = partsIDList.SplitToInt(',');
         ModelPart parts = new ModelPart(iArray);
         model = ModelManager.Instance.CreateModel(parts);
-        model.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+        model.SetLocalRotation(new Vector3(0f, 180f, 0f));
     }
 
     private void RemoveModelBtnCall()
