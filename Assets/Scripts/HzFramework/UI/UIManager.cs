@@ -32,7 +32,7 @@ public class UIManager: Singleton<UIManager>
     {
         _uiCamera = GameObject.Find("UICamera");
         Object.DontDestroyOnLoad(_uiCamera);
-        _canvasGameObject = GameObject.Find("Canvas");
+        _canvasGameObject = GameObject.Find("UIRoot");
         Object.DontDestroyOnLoad(_canvasGameObject);
         _eventSystemGameObject = GameObject.Find("EventSystem");
         Object.DontDestroyOnLoad(_eventSystemGameObject);

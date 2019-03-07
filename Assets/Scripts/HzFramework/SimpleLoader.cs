@@ -7,7 +7,12 @@ public class SimpleLoader
     public static T Load<T>(string path) where T : Object
     {
 #if UNITY_EDITOR
-        return UnityEditor.AssetDatabase.LoadAssetAtPath<T>(path);
+        T asset = UnityEditor.AssetDatabase.LoadAssetAtPath<T>(path);
+        if (asset == null)
+        {
+            Debug.LogError("[SimpleLoader:Load] Can't load asset, path is: " + path);
+        }
+        return asset;
 #else
         // TODO：正式需要读取Assetbundle或Resources
 #endif
@@ -24,7 +29,7 @@ public class SimpleLoader
         GameObject prefab = Load<GameObject>(path);
         if (prefab)
         {
-            GameObject gameObject = GameObject.Instantiate(prefab);
+            GameObject gameObject = Object.Instantiate(prefab);
             if (parent != null)
             {
                 gameObject.transform.SetParent(parent);

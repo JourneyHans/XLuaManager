@@ -6,7 +6,7 @@ using UnityEngine.UI;
 // UI基类
 public class UIBase : MonoBehaviour
 {
-    public string UIName { set; get; }      // 对应UI名称（Prefab名称）
+    public string UIName { set; get; }      // 对应UI名称
     public GraphicRaycaster Raycast { set; get; }
     public Canvas UICanvas { set; get; }    // 控制层级的Canvas
     public UIManager.SortOrderLayer OrderLayer { set; get; }    // 所属层级Layer
